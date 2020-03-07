@@ -14,7 +14,10 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'xg89-v9ZaBJG5FxTOI0LGI-mOhRcJ6or',
+            'cookieValidationKey' => 'cbDAdnIzVYV8ljLAVuqnON7xCD58zIoI',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -22,6 +25,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'enableSession' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -53,6 +57,12 @@ $config = [
         */
     ],
     'params' => $params,
+    'controllerMap' => [
+        'site' => [
+            'class' => 'app\controllers\ArrayDivisionAlgorithmController',
+            'enableCsrfValidation' => false,
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
