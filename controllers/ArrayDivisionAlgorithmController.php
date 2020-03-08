@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\AlgorithmResult;
 use app\models\ArrayDivisionAlgorithm;
 use Yii;
 use yii\filters\AccessControl;
@@ -70,6 +71,12 @@ class ArrayDivisionAlgorithmController extends Controller
         $algorithm = new ArrayDivisionAlgorithm($post['value'], $post['array']);
 
         $result = $algorithm->run();
+
+        $algorithmResult = new AlgorithmResult();
+        $algorithmResult->request_data = json_encode($post);
+        $algorithmResult->result = $result;
+        $algorithmResult->user_id = Yii::$app->user->getId();
+        $algorithmResult->save();
 
         return $result;
     }
