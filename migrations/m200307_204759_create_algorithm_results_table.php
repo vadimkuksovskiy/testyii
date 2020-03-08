@@ -14,7 +14,7 @@ class m200307_204759_create_algorithm_results_table extends Migration
     {
         $this->createTable('{{%algorithm_results}}', [
             'id' => $this->primaryKey(),
-            'user_id' => $this->integer(),
+            'user_id' => $this->integer()->null(),
             'request_data' => $this->text(),
             'result' => $this->integer(),
         ]);
